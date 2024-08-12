@@ -1,7 +1,8 @@
 import yaml
 import logging
 import time
-from helpers import process_images, convert_to_coco, SegmentationEvaluator
+from helpers import process_images, convert_to_coco
+from calculate_metrics import evaluate_metrics
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -40,14 +41,14 @@ def main():
     # Step 5: Evaluate segmentation metrics
     logging.info("Evaluating segmentation metrics...")
     start_step = time.time()
-    evaluator = SegmentationEvaluator(config)
-    precision, recall, f1, iou = evaluator.evaluate()
+    iou, precision, recall, f1_score = evaluate_metrics(config)
+    #iou = evaluator.evaluate()
     logging.info(f"Segmentation metrics evaluated in {time.time() - start_step:.2f} seconds.")
 
     # Output the results
     logging.info(f"Precision: {precision:.4f}")
     logging.info(f"Recall: {recall:.4f}")
-    logging.info(f"F1-Score: {f1:.4f}")
+    logging.info(f"F1-Score: {f1_score:.4f}")
     logging.info(f"IoU: {iou:.4f}")
 
     # Total execution time
