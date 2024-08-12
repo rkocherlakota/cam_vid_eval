@@ -1,0 +1,10 @@
+gd_truth/images
+gd_truth/train
+gd_truth/valid
+predicted_camvid/images
+predicted_camvid/train
+predicted_camvid/valid
+*pycache*
+.DS_Store
+gd_truth/.DS_Store
+config.yaml

@@ -1,0 +1,9 @@
+names:
+- Pets like cat or dog
+- Car
+- Bike or Two Wheeler
+- TrafficLight
+- Public Bus
+nc: 5
+train: /content/camvid/gd_truth/train/images
+val: /content/camvid/gd_truth/valid/images

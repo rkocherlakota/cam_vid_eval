@@ -1,0 +1,9 @@
+names:
+- Animal
+- Car
+- MotorcycleScooter
+- TrafficLight
+- Truck_Bus
+nc: 5
+train: /content/camvid/datasets/train/images
+val: /content/camvid/datasets/valid/images
