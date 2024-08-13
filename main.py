@@ -41,7 +41,7 @@ def main():
     # Step 5: Evaluate segmentation metrics
     logging.info("Evaluating segmentation metrics...")
     start_step = time.time()
-    iou, precision, recall, f1_score = evaluate_metrics(config)
+    iou, precision, recall, f1_score, pixel_accuracy, dice_coefficient = evaluate_metrics(config)
     #iou = evaluator.evaluate()
     logging.info(f"Segmentation metrics evaluated in {time.time() - start_step:.2f} seconds.")
 
@@ -50,6 +50,8 @@ def main():
     logging.info(f"Recall: {recall:.4f}")
     logging.info(f"F1-Score: {f1_score:.4f}")
     logging.info(f"IoU: {iou:.4f}")
+    logging.info(f"Pixel-Accuracy: {pixel_accuracy:.4f}")
+    logging.info(f"Dice Coefficient: {dice_coefficient:.4f}")
 
     # Total execution time
     logging.info(f"Total execution time: {time.time() - start_time:.2f} seconds.")

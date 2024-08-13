@@ -41,6 +41,20 @@ def calculate_f1(precision, recall):
     f1 = 2 * (precision * recall) / (precision + recall) if (precision + recall) != 0 else 0
     return f1
 
+def calculate_pixel_accuracy(pred, gt):
+    """Calculates the pixel accuracy between two masks."""
+    correct_pixels = np.sum(pred == gt)
+    total_pixels = pred.shape[0] * pred.shape[1]
+    pixel_accuracy = correct_pixels / total_pixels
+    return pixel_accuracy
+
+def calculate_dice_coefficient(mask1, mask2):
+    """Calculates the Dice coefficient between two masks."""
+    intersection = np.logical_and(mask1, mask2).sum()
+    total_pixels = np.sum(mask1) + np.sum(mask2)
+    dice = (2 * intersection) / total_pixels
+    return dice
+
 def load_annotations(json_path):
     """Loads the annotations from a JSON file."""
     with open(json_path, 'r') as file:
@@ -77,5 +91,7 @@ def evaluate_metrics(config):
     precision = calculate_precision(gt_combined_mask, pred_combined_mask)
     recall = calculate_recall(gt_combined_mask, pred_combined_mask)
     f1_score = calculate_f1(precision, recall)
+    pixel_accuracy = calculate_pixel_accuracy(gt_combined_mask, pred_combined_mask)
+    dice_coefficient = calculate_dice_coefficient(gt_combined_mask, pred_combined_mask)
     
-    return iou, precision, recall, f1_score
+    return iou, precision, recall, f1_score, pixel_accuracy, dice_coefficient
